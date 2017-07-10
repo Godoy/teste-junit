@@ -7,18 +7,25 @@ import java.util.Scanner;
  */
 public class Profit {
     private int employersNumber;
-
+    private double profitMargin;
 
     public int getEmployersNumber() {
         return this.employersNumber;
     }
 
+    public double getProfitMargin() {
+        return this.profitMargin;
+    }
+
     public void readInitialInputs() {
         Scanner scan = new Scanner(System.in);
-        int input = scan.nextInt();
+        int employers = scan.nextInt();
+        double margin = scan.nextDouble();
+
         scan.close();
 
-        this.employersNumber = input;
+        this.employersNumber = employers;
+        this.profitMargin = margin;
     }
 
 }
