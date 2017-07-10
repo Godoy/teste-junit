@@ -19,7 +19,11 @@ public class Profit {
 
     public void readInitialInputs() {
         Scanner scan = new Scanner(System.in);
+
+        System.out.println("Numero de empregados: ");
         int employers = scan.nextInt();
+
+        System.out.println("Margem de lucro do ano: ");
         double margin = scan.nextDouble();
 
         scan.close();
