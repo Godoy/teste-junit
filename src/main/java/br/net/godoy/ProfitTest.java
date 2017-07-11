@@ -19,6 +19,8 @@ public class ProfitTest {
     public void setUp()
     {
         profit = new Profit();
+        systemInMock.provideLines("10", "900.0");
+        profit.readInitialInputs();
     }
 
     @Rule
@@ -30,26 +32,17 @@ public class ProfitTest {
 
     @Test
     public void testReadInitialInputsShouldSetEmployersNumber() {
-        systemInMock.provideLines("12", "213.2");
-        profit.readInitialInputs();
-
-        assertEquals(12, profit.getEmployersNumber());
+        assertEquals(10, profit.getEmployersNumber());
     }
 
 
     @Test
     public void testReadInitialInputsShouldSetProfitMargin() {
-        systemInMock.provideLines("23", "452.32");
-        profit.readInitialInputs();
-
-        assertEquals(452.32, profit.getProfitMargin(), 0.0);
+        assertEquals(900.0, profit.getProfitMargin(), 0.0);
     }
 
     @Test
     public void testRunMenuGiveOptions() {
-        systemInMock.provideLines("10", "900.0");
-        profit.readInitialInputs();
-
         systemOutRule.clearLog();
         profit.runMenu();
         assertEquals("Menu\n1- Calcular participacao\n2- Sair\n",
