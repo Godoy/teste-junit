@@ -3,13 +3,14 @@ package br.net.godoy;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+import org.mockito.Mockito;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by agodoy on 03/07/17.
@@ -31,6 +32,9 @@ public class ProfitTest {
 
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
     public void testReadInitialInputsShouldSetEmployersNumber() {
@@ -62,5 +66,18 @@ public class ProfitTest {
 
     }
 
+    @Test
+    public void testMenuOption2EndProgram() {
+        Profit mock = spy(new Profit());
+
+        systemInMock.provideLines("1");
+        mock.runMenu();
+
+        Mockito.doNothing().when(mock).runMenu();
+//        exit.expectSystemExit();
+//        System.exit(0);
+
+//        verify(mock, never()).calculateProfit();
+    }
 
 }

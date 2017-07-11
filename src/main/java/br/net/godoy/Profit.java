@@ -26,8 +26,6 @@ public class Profit {
         System.out.println("Margem de lucro do ano: ");
         double margin = scan.nextDouble();
 
-        scan.close();
-
         this.employersNumber = employers;
         this.profitMargin = margin;
     }
@@ -38,17 +36,15 @@ public class Profit {
         System.out.println("Menu\n1- Calcular participacao\n2- Sair");
         int option = 0;
 
-        while(scan.hasNext() && option != 2) {
-            System.out.println("while");
+        while(scan.hasNext()) {
             option = scan.nextInt();
 
             if(option == 1) {
                 calculateProfit();
-            } else {
+            } else if(option == 2) {
                 break;
             }
         }
-
     }
 
     public void calculateProfit() {
