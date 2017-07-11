@@ -32,4 +32,8 @@ public class Profit {
         this.profitMargin = margin;
     }
 
+    public void runMenu() {
+        System.out.println("Menu\n1- Calcular participacao\n2- Sair");
+
+    }
 }

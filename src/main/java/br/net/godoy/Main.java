@@ -8,6 +8,5 @@ public class Main {
 
         Profit profit_sharing = new Profit();
         profit_sharing.readInitialInputs();
-
     }
 }

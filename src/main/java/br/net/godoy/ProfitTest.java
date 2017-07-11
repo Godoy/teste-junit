@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
-
+import org.junit.contrib.java.lang.system.SystemOutRule;
 
 /**
  * Created by agodoy on 03/07/17.
@@ -25,6 +25,8 @@ public class ProfitTest {
     public final TextFromStandardInputStream systemInMock
             = emptyStandardInputStream();
 
+    @Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
     @Test
     public void testReadInitialInputsShouldSetEmployersNumber() {
@@ -43,5 +45,14 @@ public class ProfitTest {
         assertEquals(452.32, profit.getProfitMargin(), 0.0);
     }
 
+    @Test
+    public void testRunMenuGiveOptions() {
+        systemInMock.provideLines("10", "900.0");
+        profit.readInitialInputs();
 
+        systemOutRule.clearLog();
+        profit.runMenu();
+        assertEquals("Menu\n1- Calcular participacao\n2- Sair\n",
+                systemOutRule.getLogWithNormalizedLineSeparator());
+    }
 }
