@@ -33,7 +33,25 @@ public class Profit {
     }
 
     public void runMenu() {
-        System.out.println("Menu\n1- Calcular participacao\n2- Sair");
+        Scanner scan = new Scanner(System.in);
 
+        System.out.println("Menu\n1- Calcular participacao\n2- Sair");
+        int option = 0;
+
+        while(scan.hasNext() && option != 2) {
+            System.out.println("while");
+            option = scan.nextInt();
+
+            if(option == 1) {
+                calculateProfit();
+            } else {
+                break;
+            }
+        }
+
+    }
+
+    public void calculateProfit() {
+        System.out.println("Calculado");
     }
 }

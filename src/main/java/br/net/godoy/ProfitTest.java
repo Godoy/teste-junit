@@ -1,13 +1,15 @@
 package br.net.godoy;
 
-import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
-
-import junit.framework.TestCase;
-import static org.junit.Assert.*;
-
-import org.junit.*;
-import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by agodoy on 03/07/17.
@@ -48,4 +50,17 @@ public class ProfitTest {
         assertEquals("Menu\n1- Calcular participacao\n2- Sair\n",
                 systemOutRule.getLogWithNormalizedLineSeparator());
     }
+
+    @Test
+    public void testMenuOption1CallsCalculateProfit() {
+        Profit mock = spy(new Profit());
+
+        systemInMock.provideLines("1");
+
+        mock.runMenu();
+        verify(mock).calculateProfit();
+
+    }
+
+
 }
