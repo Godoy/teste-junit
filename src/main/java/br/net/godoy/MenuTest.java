@@ -17,10 +17,7 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        profit = new Profit();
-        systemInMock.provideLines("10", "900.0");
-        profit.readInitialInputs();
-
+        profit = new Profit(10, 900.0);
         menu = new Menu(profit);
     }
 
@@ -33,19 +30,18 @@ public class MenuTest {
 
     @Test
     public void testMenuOption1CallsCalculateProfit() {
-        Profit profitMock = spy(new Profit());
+        Profit profitMock = spy(profit);
         Menu mock = spy(new Menu(profitMock));
 
         systemInMock.provideLines("1");
 
         mock.show();
         verify(mock.profit).calculateProfit();
-
     }
 
     @Test
     public void testMenuOption2EndProgram() {
-        Profit profitMock = spy(new Profit());
+        Profit profitMock = spy(profit);
         Menu mock = spy(new Menu(profitMock));
 
         systemInMock.provideLines("2");

@@ -21,6 +21,11 @@ public class Profit {
         }
     }
 
+    public Profit(int _employersNumber, double _profitMargin) {
+        employersNumber = _employersNumber;
+        profitMargin = _profitMargin;
+    }
+
     public int getEmployersNumber() {
         return this.employersNumber;
     }
@@ -29,22 +34,8 @@ public class Profit {
         return this.profitMargin;
     }
 
-    public void readInitialInputs() {
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Numero de empregados: ");
-        int employers = scan.nextInt();
-
-        System.out.println("Margem de lucro do ano: ");
-        double margin = scan.nextDouble();
-
-        this.employersNumber = employers;
-        this.profitMargin = margin;
-    }
-
     private boolean willOffer() {
-        if(profitMargin > 10000.0*employersNumber) return true;
-        else return false;
+        return profitMargin > 10000.0*employersNumber;
     }
 
     private int getEmployerPerformance(Scanner scan) {

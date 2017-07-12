@@ -19,9 +19,7 @@ public class ProfitTest {
     @Before
     public void setUp()
     {
-        profit = new Profit();
-        systemInMock.provideLines("10", "120000.0");
-        profit.readInitialInputs();
+        profit = new Profit(10, 120000.0);
     }
 
     @Rule
@@ -35,13 +33,13 @@ public class ProfitTest {
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
-    public void testReadInitialInputsShouldSetEmployersNumber() {
+    public void constructorShouldSetEmployersNumber() {
         assertEquals(10, profit.getEmployersNumber());
     }
 
 
     @Test
-    public void testReadInitialInputsShouldSetProfitMargin() {
+    public void constructorShouldSetProfitMargin() {
         assertEquals(120000.0, profit.getProfitMargin(), 0.0);
     }
 
@@ -56,8 +54,7 @@ public class ProfitTest {
 
     @Test
     public void testCalculateProfitWhenTotalProfitIsNotEnough() {
-        systemInMock.provideLines("10", "99999.9");
-        profit.readInitialInputs();
+        profit = new Profit(10, 99999.9);
 
         systemInMock.provideLines("Trainee", "1");
         double profitResult = profit.calculateProfit();
