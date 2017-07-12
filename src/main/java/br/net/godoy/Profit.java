@@ -8,6 +8,17 @@ import java.util.Scanner;
 public class Profit {
     private int employersNumber;
     private double profitMargin;
+    public enum Roles {
+        Trainee(1), Analista(2), Gerente(3);
+
+        private final int value;
+        Roles (int _value){
+            value = _value;
+        }
+        public int getValue(){
+            return value;
+        }
+    }
 
     public int getEmployersNumber() {
         return this.employersNumber;
@@ -30,9 +41,27 @@ public class Profit {
         this.profitMargin = margin;
     }
 
+    private boolean willOffer() {
+        if(profitMargin > 10000.0*employersNumber) return true;
+        else return false;
+    }
 
+    public double calculateProfit() {
+        double profitResult = 0.0;
 
-    public void calculateProfit() {
-        System.out.println("Calculado");
+        if (willOffer()) {
+            Scanner scan = new Scanner(System.in);
+
+            System.out.println("Qual o cargo do empregado?");
+            String employerRole = scan.nextLine();
+            int employerRoleValue = Roles.valueOf(employerRole).getValue();
+
+            System.out.println("Qual a performance anual?");
+            int employerPerformance = scan.nextInt();
+
+            profitResult = employerPerformance * employerRoleValue * (0.4 * profitMargin / employersNumber);
+        }
+
+        return profitResult;
     }
 }

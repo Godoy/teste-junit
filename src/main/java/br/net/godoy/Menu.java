@@ -20,10 +20,13 @@ public class Menu {
             option = scan.nextInt();
 
             if(option == 1) {
-                profit.calculateProfit();
+                double profitResult = profit.calculateProfit();
+                System.out.println(profitResult);
             } else {
                 break;
             }
+
+            System.out.println("Menu\n1- Calcular participacao\n2- Sair");
         }
     }
 }

@@ -20,7 +20,7 @@ public class ProfitTest {
     public void setUp()
     {
         profit = new Profit();
-        systemInMock.provideLines("10", "900.0");
+        systemInMock.provideLines("10", "120000.0");
         profit.readInitialInputs();
     }
 
@@ -42,11 +42,28 @@ public class ProfitTest {
 
     @Test
     public void testReadInitialInputsShouldSetProfitMargin() {
-        assertEquals(900.0, profit.getProfitMargin(), 0.0);
+        assertEquals(120000.0, profit.getProfitMargin(), 0.0);
     }
 
 
+    @Test
+    public void testCalculateProfit() {
+        systemInMock.provideLines("Trainee", "1");
+        double profitResult = profit.calculateProfit();
 
+        assertEquals(4800.0, profitResult, 0.0);
+    }
+
+    @Test
+    public void testCalculateProfitWhenTotalProfitIsNotEnough() {
+        systemInMock.provideLines("10", "99999.9");
+        profit.readInitialInputs();
+
+        systemInMock.provideLines("Trainee", "1");
+        double profitResult = profit.calculateProfit();
+
+        assertEquals(0.0, profitResult, 0.0);
+    }
 
 
 }
