@@ -4,10 +4,10 @@ package br.net.godoy;
 import java.util.Scanner;
 
 public class Menu {
-    public Profit profit;
+    public Company company;
 
-    public Menu(Profit _profit) {
-        profit = _profit;
+    public Menu(Company _company) {
+        company = _company;
     }
 
     public void show() {
@@ -20,7 +20,7 @@ public class Menu {
             option = scan.nextInt();
 
             if(option == 1) {
-                double profitResult = profit.calculateProfit();
+                double profitResult = company.calculateProfit();
                 System.out.println(profitResult);
             } else {
                 break;

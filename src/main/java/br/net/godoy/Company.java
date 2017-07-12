@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Created by agodoy on 03/07/17.
  */
-public class Profit {
+public class Company {
     private int employersNumber;
     private double profitMargin;
 
@@ -21,7 +21,7 @@ public class Profit {
         }
     }
 
-    public Profit(int _employersNumber, double _profitMargin) {
+    public Company(int _employersNumber, double _profitMargin) {
         employersNumber = _employersNumber;
         profitMargin = _profitMargin;
     }

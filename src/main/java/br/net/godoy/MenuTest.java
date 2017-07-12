@@ -12,13 +12,13 @@ import static org.mockito.Mockito.*;
 
 
 public class MenuTest {
-    private Profit profit;
+    private Company company;
     private Menu menu;
 
     @Before
     public void setUp() {
-        profit = new Profit(10, 900.0);
-        menu = new Menu(profit);
+        company = new Company(10, 900.0);
+        menu = new Menu(company);
     }
 
     @Rule
@@ -30,24 +30,24 @@ public class MenuTest {
 
     @Test
     public void testMenuOption1CallsCalculateProfit() {
-        Profit profitMock = spy(profit);
-        Menu mock = spy(new Menu(profitMock));
+        Company companyMock = spy(company);
+        Menu mock = spy(new Menu(companyMock));
 
         systemInMock.provideLines("1");
 
         mock.show();
-        verify(mock.profit).calculateProfit();
+        verify(mock.company).calculateProfit();
     }
 
     @Test
     public void testMenuOption2EndProgram() {
-        Profit profitMock = spy(profit);
-        Menu mock = spy(new Menu(profitMock));
+        Company companyMock = spy(company);
+        Menu mock = spy(new Menu(companyMock));
 
         systemInMock.provideLines("2");
         mock.show();
 
-        verify(mock.profit, never()).calculateProfit();
+        verify(mock.company, never()).calculateProfit();
     }
 
     @Test

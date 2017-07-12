@@ -15,9 +15,9 @@ public class Main {
         double margin = scan.nextDouble();
 
 
-        Profit profit_sharing = new Profit(employers, margin);
+        Company company = new Company(employers, margin);
 
-        Menu menu = new Menu(profit_sharing);
+        Menu menu = new Menu(company);
         menu.show();
     }
 }
