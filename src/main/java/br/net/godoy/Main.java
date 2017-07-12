@@ -7,6 +7,7 @@ public class Main {
         Profit profit_sharing = new Profit();
         profit_sharing.readInitialInputs();
 
-        profit_sharing.runMenu();
+        Menu menu = new Menu(profit_sharing);
+        menu.show();
     }
 }

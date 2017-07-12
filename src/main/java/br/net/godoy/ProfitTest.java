@@ -6,11 +6,9 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
-import org.mockito.Mockito;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
-import static org.mockito.Mockito.*;
 
 /**
  * Created by agodoy on 03/07/17.
@@ -47,37 +45,8 @@ public class ProfitTest {
         assertEquals(900.0, profit.getProfitMargin(), 0.0);
     }
 
-    @Test
-    public void testRunMenuGiveOptions() {
-        systemOutRule.clearLog();
-        profit.runMenu();
-        assertEquals("Menu\n1- Calcular participacao\n2- Sair\n",
-                systemOutRule.getLogWithNormalizedLineSeparator());
-    }
 
-    @Test
-    public void testMenuOption1CallsCalculateProfit() {
-        Profit mock = spy(new Profit());
 
-        systemInMock.provideLines("1");
 
-        mock.runMenu();
-        verify(mock).calculateProfit();
-
-    }
-
-    @Test
-    public void testMenuOption2EndProgram() {
-        Profit mock = spy(new Profit());
-
-        systemInMock.provideLines("1");
-        mock.runMenu();
-
-        Mockito.doNothing().when(mock).runMenu();
-//        exit.expectSystemExit();
-//        System.exit(0);
-
-//        verify(mock, never()).calculateProfit();
-    }
 
 }
