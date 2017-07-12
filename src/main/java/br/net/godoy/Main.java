@@ -1,21 +1,15 @@
 package br.net.godoy;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
+        UserInterface ui = new UserInterface();
 
-        System.out.println("Numero de empregados: ");
-        int employers = scan.nextInt();
+        int employersNumber = ui.readEmployersNumber();
+        double profitMargin = ui.readProfitMargin();
 
-        System.out.println("Margem de lucro do ano: ");
-        double margin = scan.nextDouble();
-
-
-        Company company = new Company(employers, margin);
+        Company company = new Company(employersNumber, profitMargin);
 
         Menu menu = new Menu(company);
         menu.show();
