@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Profit {
     private int employersNumber;
     private double profitMargin;
+
     public enum Roles {
         Trainee(1), Analista(2), Gerente(3);
 
@@ -46,18 +47,30 @@ public class Profit {
         else return false;
     }
 
+    private int getEmployerPerformance(Scanner scan) {
+        System.out.println("Qual a performance anual?");
+        int employerPerformance = scan.nextInt();
+
+        return employerPerformance;
+    }
+
+    private int getEmployerRole(Scanner scan) {
+        System.out.println("Qual o cargo do empregado?");
+        String employerRole = scan.nextLine();
+
+        int employerRoleValue = Roles.valueOf(employerRole).getValue();
+
+        return employerRoleValue;
+    }
+
     public double calculateProfit() {
         double profitResult = 0.0;
 
         if (willOffer()) {
             Scanner scan = new Scanner(System.in);
 
-            System.out.println("Qual o cargo do empregado?");
-            String employerRole = scan.nextLine();
-            int employerRoleValue = Roles.valueOf(employerRole).getValue();
-
-            System.out.println("Qual a performance anual?");
-            int employerPerformance = scan.nextInt();
+            int employerRoleValue = getEmployerRole(scan);
+            int employerPerformance = getEmployerPerformance(scan);
 
             profitResult = employerPerformance * employerRoleValue * (0.4 * profitMargin / employersNumber);
         }
