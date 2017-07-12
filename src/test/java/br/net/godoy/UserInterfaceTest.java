@@ -9,6 +9,9 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 
 public class UserInterfaceTest {
@@ -63,6 +66,27 @@ public class UserInterfaceTest {
         systemOutRule.clearLog();
 
         assertEquals(profitMargin, 490.9);
+    }
+
+    @Test
+    public void printMenuShouldPrintOptions() {
+        UserInterface ui = new UserInterface();
+
+        systemOutRule.clearLog();
+        ui.printMenu();
+
+        assertEquals("Menu\n1- Calcular participacao\n2- Sair\n",
+                systemOutRule.getLogWithNormalizedLineSeparator());
+    }
+
+    @Test
+    public void getMenuOptionShouldReturnAInteger() {
+        UserInterface ui = new UserInterface();
+
+        systemInMock.provideLines("1");
+        int option = ui.getMenuOption();
+
+        assertEquals(option, 1);
     }
 
 }

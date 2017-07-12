@@ -11,7 +11,16 @@ public class Main {
 
         Company company = new Company(employersNumber, profitMargin);
 
-        Menu menu = new Menu(company);
-        menu.show();
+        while(true) {
+            ui.printMenu();
+            int option = ui.getMenuOption();
+
+            if (option == 1)
+                company.calculateProfit();
+            else if (option == 2)
+                System.exit(0);
+
+        }
+
     }
 }

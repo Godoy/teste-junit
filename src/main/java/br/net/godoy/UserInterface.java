@@ -48,4 +48,25 @@ public class UserInterface {
 
         return profitMargin;
     }
+
+
+    public void printMenu() {
+        System.out.println("Menu\n1- Calcular participacao\n2- Sair");
+    }
+
+    public int getMenuOption() {
+        int option = -1;
+
+        do {
+            if(scan.hasNextInt()){
+                option = scan.nextInt();
+            } else {
+                scan.nextLine();
+                System.out.println("Por favor, forneca uma das opcoes.");
+            }
+
+        } while(option == -1);
+
+        return option;
+    }
 }
